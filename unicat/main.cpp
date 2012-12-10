@@ -6,6 +6,13 @@
 #include <QTextStream>
 #include <iostream>
 
+/* NOTE : this is to enable unicode console output in Windows */
+#ifdef _MSC_VER
+	#include <fcntl.h>
+	#include <io.h>
+	#include <stdio.h>
+#endif
+
 int main(int argc, char *argv[])
 {
     /* Command line usage and encoding list */
@@ -79,6 +86,9 @@ int main(int argc, char *argv[])
     stream.setAutoDetectUnicode(detectBOM);
     stream.setCodec(userCodec);
 
+#if _MSC_VER
+	  _setmode(_fileno(stdout), _O_U16TEXT);  
+#endif
     /* Read and write */
     while (!stream.atEnd())
     {
