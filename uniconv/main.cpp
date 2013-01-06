@@ -69,7 +69,7 @@ int main(int argc, char *argv[])
         userCodec = QTextCodec::codecForName(in_encoding.toAscii());
         if (userCodec == NULL)
         {
-            std::cerr << "ERROR: could not load input encoding " << out_encoding.toStdString() << std::endl;
+            std::cerr << "ERROR: could not load input encoding " <<in_encoding.toStdString() << std::endl;
             return 1;
         }
     }
@@ -81,7 +81,7 @@ int main(int argc, char *argv[])
     }
     else
     {
-        outCodec = QTextCodec::codecForName(in_encoding.toAscii());
+        outCodec = QTextCodec::codecForName(out_encoding.toAscii());
         if (outCodec == NULL)
         {
             std::cerr << "ERROR: could not load output encoding " << out_encoding.toStdString() << std::endl;
